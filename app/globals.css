@@ -74,6 +74,7 @@ body {
     0 30px 80px rgba(0, 0, 0, 0.45),
     inset 0 0 40px rgba(95, 231, 255, 0.08);
   backdrop-filter: blur(12px);
+  width: 100%;
 }
 
 .text-gradient {
@@ -163,6 +164,24 @@ body {
 @media (pointer: coarse) {
   .cursor-layer {
     display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-shell {
+    box-shadow:
+      0 18px 46px rgba(0, 0, 0, 0.44),
+      inset 0 0 24px rgba(95, 231, 255, 0.08);
+    backdrop-filter: blur(10px);
+  }
+
+  .border-glow::before {
+    filter: blur(10px);
+  }
+
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
   }
 }
 

@@ -85,15 +85,15 @@ function OpportunityCard({ item, index }: { item: Opportunity; index: number }) 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.65, delay: index * 0.1 }}
-      className="group glass-panel border-glow relative overflow-hidden rounded-3xl p-7 md:p-8"
+      className="group glass-panel border-glow relative overflow-hidden rounded-3xl p-5 sm:p-6 md:p-8"
     >
       <motion.div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{ background: glow }} />
       <div className="scan-line" />
       <div className="relative z-10">
-        <div className="flex items-start justify-between gap-4">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5">
+        <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:gap-4">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-2.5 py-1.5 sm:px-3">
             <item.icon className="h-4 w-4" style={{ color: item.color }} />
-            <span className="font-code text-[10px] uppercase tracking-[0.25em] text-white/75">
+            <span className="font-code text-[9px] uppercase tracking-[0.18em] text-white/75 sm:text-[10px] sm:tracking-[0.25em]">
               SYS_{item.id}
             </span>
           </div>
@@ -101,31 +101,31 @@ function OpportunityCard({ item, index }: { item: Opportunity; index: number }) 
             href={item.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs text-white/90 transition hover:border-white/40 hover:bg-white/15"
+            className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[11px] text-white/90 transition hover:border-white/40 hover:bg-white/15 sm:text-xs"
             data-cursor-hover
           >
             Preview <ArrowUpRight className="h-3.5 w-3.5" />
           </a>
         </div>
 
-        <p className="font-code mt-5 text-[10px] uppercase tracking-[0.3em]" style={{ color: item.color }}>
+        <p className="font-code mt-4 text-[9px] uppercase tracking-[0.2em] sm:mt-5 sm:text-[10px] sm:tracking-[0.3em]" style={{ color: item.color }}>
           {item.label}
         </p>
 
-        <h3 className="font-display mt-3 text-2xl text-white md:text-3xl">{item.title}</h3>
-        <p className="mt-4 text-sm leading-relaxed text-[#c9d8f0]">{item.problem}</p>
-        <p className="mt-3 text-sm leading-relaxed text-white/95">{item.outcome}</p>
+        <h3 className="font-display mt-2.5 text-xl text-white sm:mt-3 sm:text-2xl md:text-3xl">{item.title}</h3>
+        <p className="mt-3 text-sm leading-relaxed text-[#c9d8f0]">{item.problem}</p>
+        <p className="mt-2.5 text-sm leading-relaxed text-white/95">{item.outcome}</p>
 
-        <div className="mt-5 rounded-2xl border border-white/12 bg-white/5 p-4">
-          <p className="font-code text-[11px] uppercase tracking-[0.23em] text-[#8cb0e5]">Reality Check</p>
+        <div className="mt-4 rounded-2xl border border-white/12 bg-white/5 p-3.5 sm:mt-5 sm:p-4">
+          <p className="font-code text-[10px] uppercase tracking-[0.16em] text-[#8cb0e5] sm:text-[11px] sm:tracking-[0.23em]">Reality Check</p>
           <p className="mt-2 text-sm text-white/90">{item.metric}</p>
         </div>
 
-        <div className="mt-6 flex flex-wrap gap-2">
+        <div className="mt-5 flex flex-wrap gap-2 sm:mt-6">
           {item.stack.map((tech) => (
             <span
               key={tech}
-              className="font-code rounded-md border border-white/15 bg-[#0f1c35] px-2.5 py-1 text-[10px] uppercase tracking-[0.2em] text-[#acc6f0]"
+              className="font-code rounded-md border border-white/15 bg-[#0f1c35] px-2.5 py-1 text-[9px] uppercase tracking-[0.14em] text-[#acc6f0] sm:text-[10px] sm:tracking-[0.2em]"
             >
               {tech}
             </span>
@@ -138,18 +138,20 @@ function OpportunityCard({ item, index }: { item: Opportunity; index: number }) 
 
 export default function Projects() {
   return (
-    <section id="projects" className="relative mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
+    <section id="projects" className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-10 md:py-32">
       <div className="max-w-3xl">
-        <p className="font-code mb-4 text-xs uppercase tracking-[0.25em] text-[#8df9a7]">RECENT DEMO WEBSITES</p>
-        <h2 className="font-display text-4xl leading-[0.95] text-white md:text-6xl">
+        <p className="font-code mb-3 text-[10px] uppercase tracking-[0.18em] text-[#8df9a7] sm:mb-4 sm:text-xs sm:tracking-[0.25em]">
+          RECENT DEMO WEBSITES
+        </p>
+        <h2 className="font-display text-3xl leading-[0.95] text-white sm:text-4xl md:text-6xl">
           Portfolio + Small Business <span className="text-gradient">Websites That Work</span>
         </h2>
-        <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#a9c0e2]">
+        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#a9c0e2] sm:mt-6 sm:text-base">
           Click preview to open each live demo in a new tab.
         </p>
       </div>
 
-      <div className="mt-12 grid gap-6 md:grid-cols-2">
+      <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-6 md:mt-12 md:grid-cols-2">
         {opportunities.map((item, index) => (
           <OpportunityCard key={item.id} item={item} index={index} />
         ))}
