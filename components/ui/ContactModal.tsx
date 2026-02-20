@@ -33,7 +33,7 @@ export default function ContactModal({ isOpen, onClose, selectedPackage }: Conta
       `Name: ${formData.name}\nEmail: ${formData.email}\n\nProject Details:\n${formData.message}`
     );
 
-    const mailto = `mailto:hello@apexdesigns.dev?subject=${subject}&body=${body}`;
+    const mailto = `mailto:contact.vanshdev@gmail.com?subject=${subject}&body=${body}`;
 
     await new Promise((resolve) => setTimeout(resolve, 700));
     window.location.href = mailto;
