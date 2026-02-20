@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
   Environment,
@@ -118,17 +118,31 @@ function ParticleField() {
 }
 
 export default function ImmersiveScene() {
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia("(pointer: coarse)");
+    const update = () => setIsTouchDevice(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
   return (
-    <div className="absolute inset-0 -z-10 h-full w-full cursor-grab active:cursor-grabbing">
-      <Canvas camera={{ position: [0, 0, 6], fov: 34 }}>
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          autoRotate={true}
-          autoRotateSpeed={0.45}
-          maxPolarAngle={Math.PI * 0.66}
-          minPolarAngle={Math.PI * 0.36}
-        />
+    <div
+      className={`absolute inset-0 -z-10 h-full w-full ${isTouchDevice ? "pointer-events-none" : "cursor-grab active:cursor-grabbing"}`}
+    >
+      <Canvas camera={{ position: [0, 0, 6], fov: 34 }} style={{ pointerEvents: isTouchDevice ? "none" : "auto" }}>
+        {!isTouchDevice && (
+          <OrbitControls
+            enableZoom={false}
+            enablePan={false}
+            autoRotate={true}
+            autoRotateSpeed={0.45}
+            maxPolarAngle={Math.PI * 0.66}
+            minPolarAngle={Math.PI * 0.36}
+          />
+        )}
 
         <Environment preset="night" />
         <color attach="background" args={["#050912"]} />
