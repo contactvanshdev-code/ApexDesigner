@@ -65,7 +65,7 @@ export default function Home() {
     <main className="relative min-h-screen w-full overflow-hidden bg-[#050912] selection:bg-[#5fe7ff]/35">
       <CustomCursor />
       <div className="bg-grain" />
-      
+
       <nav className="fixed left-3 top-3 z-[110] sm:left-5 sm:top-5 md:left-8 md:top-8">
         <div
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -116,10 +116,9 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
-                >
-                  <GsapHeadline
-                    lines={["Simple Websites", "That Bring Real Clients."]}
-                    className="text-[clamp(2rem,10vw,4.5rem)] tracking-tight text-white"
+                ><GsapHeadline
+                    lines={["Less noise", "more signal."]}
+                    className="text-[clamp(2rem,12vw,5.5rem)] tracking-tight text-white leading-[1.2] pb-4 overflow-visible"
                   />
                 </motion.div>
 
@@ -203,9 +202,8 @@ export default function Home() {
       </section>
 
       <div
-        className={`relative z-20 mt-12 border-t border-white/10 bg-[#040a17]/88 backdrop-blur-md transition-opacity duration-300 md:mt-[10vh] ${
-          isUIHidden ? "pointer-events-none opacity-0" : "opacity-100"
-        }`}
+        className={`relative z-20 mt-12 border-t border-white/10 bg-[#040a17]/88 backdrop-blur-md transition-opacity duration-300 md:mt-[10vh] ${isUIHidden ? "pointer-events-none opacity-0" : "opacity-100"
+          }`}
       >
         <Marquee />
         <Projects />

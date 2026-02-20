@@ -59,9 +59,15 @@ export default function GsapHeadline({ lines, className = "" }: GsapHeadlineProp
   return (
     <h1 ref={rootRef} className={`font-display ${className}`}>
       {lines.map((line, lineIndex) => (
-        <span key={lineIndex} className="block leading-[0.9]">
+        // Changed leading to 1.1 or 1.2 to give descenders room
+        <span key={lineIndex} className="block leading-[0.8]">
           {line.split(" ").map((word, wordIndex) => (
-            <span key={`${lineIndex}-${wordIndex}`} className="mr-[0.26em] inline-block overflow-hidden">
+            <span
+              key={`${lineIndex}-${wordIndex}`}
+              // 1. Added pb-[0.15em] to stop the crop
+              // 2. Added -mb-[0.15em] to keep the lines tight
+              className="mr-[0.26em] inline-block overflow-hidden pb-[0.15em] -mb-[0.15em]"
+            >
               <span data-gsap-word className="hero-word inline-block">
                 {word}
               </span>
