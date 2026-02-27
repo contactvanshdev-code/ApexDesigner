@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Check, Sparkles, WandSparkles } from "lucide-react";
+import { ArrowRight, Check, Sparkles, WandSparkles, Box, ShieldCheck, Zap } from "lucide-react";
 
 interface ServicesProps {
   onOpenModal: (packageName: string) => void;
@@ -8,34 +8,52 @@ interface ServicesProps {
 
 const services = [
   {
-    title: "Profile Launch",
+    title: "The Identity",
     category: "FOR STUDENTS & CREATORS",
-    price: "$129",
+    price: "$149",
     description:
-      "A sharp personal website so recruiters and clients stop guessing and start trusting your work.",
+      "High-fidelity professional proof. OCAD/Seneca SlideRoom-ready to beat the 2027 job market.",
     features: [
-      "Single-page premium layout",
-      "Fast mobile performance",
-      "Project and resume sections",
+      "Single-page premium build",
+      "100ms load fidelity",
+      "Project-first UX architecture",
       "14 days of content tweaks"
     ],
     gradient: "from-[#5fe7ff] to-[#9ec4ff]",
-    popular: false
+    popular: false,
+    icon: <ShieldCheck className="h-5 w-5" />
   },
   {
-    title: "Growth Website",
+    title: "Growth Engine",
     category: "FOR SERVICE BUSINESSES",
-    price: "$699",
+    price: "$799",
     description:
-      "The best price-to-conversion setup: custom pages, lead capture, and clear messaging that sells your service.",
+      "The lead-capture standard for GTA contractors. Turn local search traffic into warm inquiries automatically.",
     features: [
-      "Up to 6 custom pages",
-      "SEO + speed optimization",
-      "Lead form + WhatsApp integration",
-      "30 days priority modifications"
+      "Up to 6 performance pages",
+      "Localized SEO optimization",
+      "Integrated WhatsApp routing",
+      "Automated lead-gen forms"
     ],
     gradient: "from-[#8df9a7] to-[#5fe7ff]",
-    popular: true
+    popular: true,
+    icon: <Zap className="h-5 w-5" />
+  },
+  {
+    title: "Terminal",
+    category: "LOGISTICS & ENTERPRISE",
+    price: "$2,499",
+    description:
+      "Full digital infrastructure. Escape the 30% delivery commission and own your logistics from end-to-end.",
+    features: [
+      "Direct-to-Courier API Integration",
+      "Zero-commission delivery setup",
+      "Multi-location management",
+      "Priority 24/7 technical support"
+    ],
+    gradient: "from-[#ffc670] to-[#ff8d8d]",
+    popular: false,
+    icon: <Box className="h-5 w-5" />
   }
 ];
 
@@ -44,24 +62,26 @@ export default function Services({ onOpenModal }: ServicesProps) {
     <section id="packages" className="relative z-[120] mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-10 md:py-32">
       <div className="mx-auto max-w-3xl text-center">
         <p className="font-code mb-3 text-[10px] uppercase tracking-[0.18em] text-[#5fe7ff] sm:mb-4 sm:text-xs sm:tracking-[0.28em]">
-          SIMPLE PRICING
+          STRATEGIC INFRASTRUCTURE
         </p>
         <h2 className="font-display text-3xl leading-[0.92] text-white sm:text-4xl md:text-6xl">
-          Built for Individuals and <span className="text-gradient">Small Businesses</span>
+          Built for Impact and <span className="text-gradient">Margin Protection</span>
         </h2>
         <p className="mt-4 text-sm leading-relaxed text-[#abc2e3] sm:mt-6 sm:text-base">
-          Clear scope, clear timeline, and easy modifications after launch.
+          Stop building websites. Start deploying digital assets that recover your profits.
         </p>
       </div>
 
-      <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-6 md:mt-12 md:grid-cols-2">
+      <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-6 md:mt-12 lg:grid-cols-3">
         {services.map((service) => (
           <div
             key={service.title}
-            className="glass-panel relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/15 p-5 sm:p-6 md:p-8"
+            className={`glass-panel relative flex h-full flex-col overflow-hidden rounded-3xl border p-5 sm:p-6 md:p-8 transition-all duration-300 hover:border-white/30 ${
+              service.popular ? "border-[#8df9a7]/40 bg-[#0a1a12]/40" : "border-white/15"
+            }`}
           >
             <div
-              className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-[0.12] blur-2xl`}
+              className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-[0.08] blur-3xl`}
             />
 
             <div className="relative z-10 flex flex-col items-start justify-between gap-3 sm:flex-row sm:gap-4">
@@ -76,16 +96,20 @@ export default function Services({ onOpenModal }: ServicesProps) {
               </span>
               {service.popular && (
                 <span className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-[#ffc670]">
-                  <Sparkles className="h-3.5 w-3.5" /> Popular
+                  <Sparkles className="h-3.5 w-3.5" /> Recommended
                 </span>
               )}
             </div>
 
-            <h3 className="font-display mt-5 text-2xl text-white sm:mt-7 sm:text-3xl">{service.title}</h3>
+            <div className="mt-5 flex items-center gap-3">
+              <div className="text-white/60">{service.icon}</div>
+              <h3 className="font-display text-2xl text-white sm:text-3xl">{service.title}</h3>
+            </div>
+            
             <div className="mt-4 flex items-baseline gap-2">
               <span className="font-display text-4xl text-white sm:text-5xl">{service.price}</span>
               <span className="text-[11px] uppercase tracking-[0.16em] text-white/45 sm:text-sm sm:tracking-[0.22em]">
-                one-time
+                starting at
               </span>
             </div>
 
@@ -93,7 +117,7 @@ export default function Services({ onOpenModal }: ServicesProps) {
               {service.description}
             </p>
 
-            <ul className="mt-5 space-y-3 text-sm text-white/90 sm:mt-6 sm:space-y-3.5">
+            <ul className="mt-5 space-y-3 text-sm text-white/90 sm:mt-6 sm:space-y-3.5 flex-grow">
               {service.features.map((feature) => (
                 <li key={feature} className="flex items-start gap-3">
                   <span className="mt-[2px] rounded-full bg-white/12 p-1 text-[#8df9a7]">
@@ -112,7 +136,7 @@ export default function Services({ onOpenModal }: ServicesProps) {
                   : "border border-white/20 bg-white/10 text-white hover:border-white/35 hover:bg-white/15"
               }`}
             >
-              Start This Plan <ArrowRight className="h-4 w-4" />
+              Deploy This Node <ArrowRight className="h-4 w-4" />
             </button>
           </div>
         ))}
@@ -121,10 +145,10 @@ export default function Services({ onOpenModal }: ServicesProps) {
       <div className="mt-8 rounded-3xl border border-white/15 bg-[#0b1832]/70 p-5 text-sm text-[#d5e6ff] backdrop-blur-md sm:mt-10 sm:p-6 md:p-7">
         <p className="font-code flex items-center gap-2 text-[10px] uppercase tracking-[0.16em] text-[#ffc670] sm:text-xs sm:tracking-[0.22em]">
           <WandSparkles className="h-4 w-4" />
-          Modification Promise
+          The Infrastructure Guarantee
         </p>
         <p className="mt-3 leading-relaxed">
-          Need updates after launch? You can request content and section changes, so your website stays fresh and useful.
+          Our builds include lifetime code ownership. No monthly platform fees, no hidden retainers, and 100% data sovereignty for your business.
         </p>
       </div>
     </section>
