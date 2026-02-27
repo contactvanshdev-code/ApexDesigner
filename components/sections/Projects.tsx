@@ -6,57 +6,58 @@ import {
   BriefcaseBusiness,
   FolderKanban,
   UserRoundCheck,
-  Utensils
+  Utensils,
+  Terminal
 } from "lucide-react";
 
 const opportunities = [
   {
     id: "01",
-    title: "Profile Website",
+    title: "The Identity Arch",
     label: "FOR INDIVIDUALS",
-    problem: "A resume alone does not show your real work.",
-    outcome: "Get one clean link that presents your projects, skills, and personality properly.",
-    metric: "Perfect for students, freelancers, and job seekers.",
-    stack: ["Portfolio UX", "Fast Load", "Mobile-first"],
+    problem: "A resume alone doesn't prove your capability.",
+    outcome: "High-fidelity professional proof for OCAD/Seneca students.",
+    metric: "100ms load speed. SlideRoom compliant.",
+    stack: ["Portfolio UX", "Performance", "Clean Code"],
     icon: UserRoundCheck,
     color: "#5fe7ff",
     link: "https://sample-portfolio-sandy-delta.vercel.app/"
   },
   {
     id: "02",
-    title: "Creative Portfolio",
+    title: "Visual Vault",
     label: "FOR CREATORS",
-    problem: "Social profiles compress your work and hide your quality.",
-    outcome: "Show photos and video work in a premium format with better first impression.",
-    metric: "Ideal for photographers, editors, and creative students.",
-    stack: ["Visual Layout", "Smooth Motion", "Gallery Flow"],
+    problem: "Social platforms compress your work and hide your quality.",
+    outcome: "Lossless media rendering for photographers and editors.",
+    metric: "Cinematic flow. Premium first impressions.",
+    stack: ["Visual Layout", "Motion FX", "Gallery Flow"],
     icon: FolderKanban,
     color: "#9ec4ff",
     link: "https://sample-photo-website.vercel.app/"
   },
   {
     id: "03",
-    title: "Service Business Site",
+    title: "Service Terminal",
     label: "FOR SMALL BUSINESS",
-    problem: "Most small businesses lose leads because their website is old or unclear.",
-    outcome: "Get a modern site that explains your service and converts visitors into inquiries.",
-    metric: "Built for local trust, clear CTA, and mobile users.",
-    stack: ["SEO Structure", "Conversion Copy", "Lead Forms"],
+    problem: "Stale websites act as a leak in your sales funnel.",
+    outcome: "Lead-capture engines for GTA contractors and service pros.",
+    metric: "Direct WhatsApp routing. 24/7 lead-gen.",
+    stack: ["SEO Structure", "Lead Forms", "Mobile First"],
     icon: BriefcaseBusiness,
     color: "#8df9a7",
     link: "https://business-website-wheat-kappa.vercel.app/"
   },
   {
     id: "04",
-    title: "Restaurant Menu System",
+    title: "Logistics Node",
     label: "FOR FOOD & HOSPITALITY",
-    problem: "Blurry PDF menus and high-fee apps eat your profits.",
-    outcome: "A high-speed digital menu with direct booking and contact integration.",
-    metric: "Designed for high conversion from Google Maps traffic.",
-    stack: ["Mobile Menu", "Booking Sync", "Instant Load"],
+    problem: "Third-party apps take 30% of your food margin.",
+    outcome: "Commission-free delivery via direct courier API integration.",
+    metric: "Recover your profit. Own your customer data.",
+    stack: ["Logistics API", "Booking Sync", "Instant Menu"],
     icon: Utensils,
-    color: "#ffc15f", // Warm amber tone
-    link: "https://restaurant-website-self-zeta.vercel.app/" // Replace with your actual link
+    color: "#ffc15f",
+    link: "https://restaurant-website-self-zeta.vercel.app/"
   }
 ];
 
@@ -67,9 +68,9 @@ function OpportunityCard({ item, index }: { item: Opportunity; index: number }) 
   const mouseY = useMotionValue(0);
 
   const glow = useMotionTemplate`radial-gradient(
-    260px circle at ${mouseX}px ${mouseY}px,
-    ${item.color}33,
-    transparent 75%
+    300px circle at ${mouseX}px ${mouseY}px,
+    ${item.color}22,
+    transparent 80%
   )`;
 
   function handleMouseMove(event: React.MouseEvent<HTMLDivElement>) {
@@ -85,53 +86,76 @@ function OpportunityCard({ item, index }: { item: Opportunity; index: number }) 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.65, delay: index * 0.1 }}
-      className="group glass-panel border-glow relative overflow-hidden rounded-3xl p-5 sm:p-6 md:p-8"
+      className="group glass-panel relative flex flex-col overflow-hidden rounded-3xl border border-white/15 transition-all duration-300 hover:border-white/25"
     >
-      <motion.div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{ background: glow }} />
-      <div className="scan-line" />
-      <div className="relative z-10">
-        <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:gap-4">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-2.5 py-1.5 sm:px-3">
+      <motion.div 
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" 
+        style={{ background: glow }} 
+      />
+      
+      <div className="relative z-10 flex flex-grow flex-col p-6 sm:p-8">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-2.5 py-1.5 sm:px-3">
             <item.icon className="h-4 w-4" style={{ color: item.color }} />
             <span className="font-code text-[9px] uppercase tracking-[0.18em] text-white/75 sm:text-[10px] sm:tracking-[0.25em]">
               SYS_{item.id}
             </span>
           </div>
-          <a
-            href={item.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[11px] text-white/90 transition hover:border-white/40 hover:bg-white/15 sm:text-xs"
-            data-cursor-hover
-          >
-            Preview <ArrowUpRight className="h-3.5 w-3.5" />
-          </a>
+          {/* Pulsing Status Dot to show it's a "Live" system */}
+          <div className="h-1.5 w-1.5 rounded-full animate-pulse shadow-[0_0_8px_rgba(255,255,255,0.5)]" style={{ backgroundColor: item.color }} />
         </div>
 
-        <p className="font-code mt-4 text-[9px] uppercase tracking-[0.2em] sm:mt-5 sm:text-[10px] sm:tracking-[0.3em]" style={{ color: item.color }}>
+        <p className="font-code mt-6 text-[9px] uppercase tracking-[0.3em] sm:text-[10px]" style={{ color: item.color }}>
           {item.label}
         </p>
 
-        <h3 className="font-display mt-2.5 text-xl text-white sm:mt-3 sm:text-2xl md:text-3xl">{item.title}</h3>
-        <p className="mt-3 text-sm leading-relaxed text-[#c9d8f0]">{item.problem}</p>
-        <p className="mt-2.5 text-sm leading-relaxed text-white/95">{item.outcome}</p>
+        <h3 className="font-display mt-2 text-2xl text-white sm:text-3xl leading-tight">{item.title}</h3>
+        
+        <div className="mt-5 space-y-4">
+          <p className="text-sm leading-relaxed text-[#bdd0ed]">
+            <span className="text-white/30 font-code text-[10px] uppercase tracking-widest block mb-1">Problem:</span>
+            {item.problem}
+          </p>
+          <p className="text-sm leading-relaxed text-white">
+             <span className="text-white/30 font-code text-[10px] uppercase tracking-widest block mb-1">Outcome:</span>
+            {item.outcome}
+          </p>
+        </div>
 
-        <div className="mt-4 rounded-2xl border border-white/12 bg-white/5 p-3.5 sm:mt-5 sm:p-4">
-          <p className="font-code text-[10px] uppercase tracking-[0.16em] text-[#8cb0e5] sm:text-[11px] sm:tracking-[0.23em]">Reality Check</p>
+        <div className="mt-6 rounded-2xl border border-white/12 bg-white/5 p-4">
+          <p className="font-code text-[10px] uppercase tracking-[0.16em] text-[#8cb0e5]">Reality Check</p>
           <p className="mt-2 text-sm text-white/90">{item.metric}</p>
         </div>
 
-        <div className="mt-5 flex flex-wrap gap-2 sm:mt-6">
+        <div className="mt-6 flex flex-wrap gap-2">
           {item.stack.map((tech) => (
             <span
               key={tech}
-              className="font-code rounded-md border border-white/15 bg-[#0f1c35] px-2.5 py-1 text-[9px] uppercase tracking-[0.14em] text-[#acc6f0] sm:text-[10px] sm:tracking-[0.2em]"
+              className="font-code rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-[9px] uppercase tracking-[0.14em] text-white/50"
             >
               {tech}
             </span>
           ))}
         </div>
       </div>
+
+      {/* NEW HIGH-VISIBILITY FOOTER LINK */}
+      <a
+        href={item.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative z-10 mt-auto flex items-center justify-between border-t border-white/10 bg-white/5 px-6 py-5 transition-all hover:bg-white/10"
+      >
+        <div className="flex items-center gap-3">
+            <Terminal size={14} className="text-white/40" />
+            <span className="font-code text-[10px] uppercase tracking-[0.2em] text-white/80 group-hover:text-white transition-colors">
+                Launch System Node
+            </span>
+        </div>
+        <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-all group-hover:bg-[#8df9a7] group-hover:text-[#05120d] group-hover:rotate-45">
+            <ArrowUpRight size={16} />
+        </div>
+      </a>
     </motion.article>
   );
 }
@@ -139,19 +163,19 @@ function OpportunityCard({ item, index }: { item: Opportunity; index: number }) 
 export default function Projects() {
   return (
     <section id="projects" className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-10 md:py-32">
-      <div className="max-w-3xl">
+      <div className="max-w-3xl mb-12">
         <p className="font-code mb-3 text-[10px] uppercase tracking-[0.18em] text-[#8df9a7] sm:mb-4 sm:text-xs sm:tracking-[0.25em]">
-          RECENT DEMO WEBSITES
+          INFRASTRUCTURE DEMOS
         </p>
         <h2 className="font-display text-3xl leading-[0.95] text-white sm:text-4xl md:text-6xl">
-          Portfolio + Small Business <span className="text-gradient">Websites That Work</span>
+          Systems Built for <span className="text-gradient">Real Conversion</span>
         </h2>
-        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#a9c0e2] sm:mt-6 sm:text-base">
-          Click preview to open each live demo in a new tab.
+        <p className="mt-4 text-sm leading-relaxed text-[#abc2e3] sm:mt-6 sm:text-base">
+          Click a node to launch a live environment in a new tab.
         </p>
       </div>
 
-      <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-6 md:mt-12 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-2">
         {opportunities.map((item, index) => (
           <OpportunityCard key={item.id} item={item} index={index} />
         ))}

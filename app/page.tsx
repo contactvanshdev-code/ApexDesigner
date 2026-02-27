@@ -16,23 +16,23 @@ import {
   Mail,
   MousePointer2,
   ShieldCheck,
-  Wallet
+  TrendingUp
 } from "lucide-react";
 
 const keyReasons = [
   {
-    title: "People Trust What They Can See",
-    description: "A clean profile website shows proof, skills, and clarity in one link.",
+    title: "Margin Protection",
+    description: "Stop losing 30% to third-party apps. We build independent logistics.",
     icon: ChartNoAxesCombined
   },
   {
-    title: "You Don’t Overpay",
-    description: "Simple one-time pricing with modification support, no hidden retainers.",
-    icon: Wallet
+    title: "Zero Hidden Fees",
+    description: "One-time build cost. Lifetime ownership. No monthly platform retainers.",
+    icon: TrendingUp
   },
   {
-    title: "You Stay Custom",
-    description: "Your site is built around your brand, not forced into a generic template.",
+    title: "Sovereign Infrastructure",
+    description: "Custom code tailored to your business rules, not a generic template.",
     icon: ShieldCheck
   }
 ];
@@ -40,7 +40,7 @@ const keyReasons = [
 export default function Home() {
   const [isUIHidden, setIsUIHidden] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
-  const [selectedPackage, setSelectedPackage] = useState("");
+  const [selectedPackage, setSelectedPackage] = useState("General Inquiry");
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -56,7 +56,7 @@ export default function Home() {
     }, 3200);
   };
 
-  const openModal = (pkgName: string = "General Inquiry") => {
+  const openModal = (pkgName: string) => {
     setSelectedPackage(pkgName);
     setIsContactOpen(true);
   };
@@ -108,7 +108,7 @@ export default function Home() {
                 >
                   <div className="h-2 w-2 animate-pulse rounded-full bg-[#8df9a7]" />
                   <span className="font-code text-[9px] uppercase tracking-[0.17em] text-[#d8ffe6] sm:text-[10px] sm:tracking-[0.24em]">
-                    Fast Launch Slots Open
+                    Build Slots Open — Toronto
                   </span>
                 </motion.div>
 
@@ -117,8 +117,8 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
                 ><GsapHeadline
-                    lines={["Less noise", "more signal."]}
-                    className="text-[clamp(2rem,12vw,5.5rem)] tracking-tight text-white leading-[1.2] pb-4 overflow-visible"
+                    lines={["High Performance", "Digital Assets."]}
+                    className="text-[clamp(2rem,12vw,5.5rem)] tracking-tight text-white leading-[1.1] pb-4 overflow-visible"
                   />
                 </motion.div>
 
@@ -128,8 +128,8 @@ export default function Home() {
                   transition={{ delay: 0.5 }}
                   className="max-w-2xl text-sm leading-relaxed text-[#c8daf5] sm:text-base md:text-lg"
                 >
-                  I build clean portfolio websites for individuals and conversion-focused websites for small businesses.
-                  Fast delivery, clear pricing, and easy edits.
+                  We deploy sovereign digital infrastructure for individuals and businesses. 
+                  Focused on margin recovery, lead-capture automation, and zero-fee logistics.
                 </motion.p>
 
                 <motion.div
@@ -143,7 +143,7 @@ export default function Home() {
                     className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#8df9a7] px-6 py-3.5 text-xs font-bold uppercase tracking-[0.15em] text-[#04170f] transition hover:scale-[1.02] sm:w-auto sm:px-7 sm:py-4 sm:text-sm sm:tracking-[0.16em]"
                     data-cursor-hover
                   >
-                    See Pricing <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    See Infrastructure <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </button>
                   <button
                     onClick={() => openModal("General Consultation")}
@@ -162,7 +162,7 @@ export default function Home() {
                   </button>
                 </motion.div>
 
-                <div className="mt-3 grid gap-2.5 sm:mt-4 sm:gap-3 sm:grid-cols-2">
+                <div className="mt-3 grid gap-2.5 sm:mt-4 sm:gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {keyReasons.map((reason) => (
                     <div
                       key={reason.title}
@@ -172,23 +172,13 @@ export default function Home() {
                         <reason.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                       </div>
                       <p className="text-sm font-semibold text-white sm:text-base">{reason.title}</p>
-                      <p className="mt-1 text-xs text-[#9db7de] sm:text-sm">{reason.description}</p>
+                      <p className="mt-1 text-xs text-[#9db7de] sm:text-sm leading-relaxed">{reason.description}</p>
                     </div>
                   ))}
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
-
-          {isUIHidden && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="font-code pointer-events-none absolute left-0 top-0 text-xs uppercase tracking-[0.2em] text-white/55"
-            >
-              Interaction Mode Active...
-            </motion.div>
-          )}
         </div>
 
         <div
@@ -202,7 +192,7 @@ export default function Home() {
       </section>
 
       <div
-        className={`relative z-20 mt-12 border-t border-white/10 bg-[#040a17]/88 backdrop-blur-md transition-opacity duration-300 md:mt-[10vh] ${isUIHidden ? "pointer-events-none opacity-0" : "opacity-100"
+        className={`relative z-20 border-t border-white/10 bg-[#040a17]/88 backdrop-blur-md transition-opacity duration-300 ${isUIHidden ? "pointer-events-none opacity-0" : "opacity-100"
           }`}
       >
         <Marquee />
@@ -216,7 +206,7 @@ export default function Home() {
             Own It Forever.
           </h2>
           <button
-            onClick={() => openModal("General Consultation")}
+            onClick={() => openModal("Final Strategy Call")}
             className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-[#5fe7ff] px-6 py-3.5 text-xs font-bold uppercase tracking-[0.14em] text-[#031219] transition hover:bg-[#7fedff] sm:w-auto sm:px-8 sm:py-4 sm:text-sm sm:tracking-[0.16em]"
             data-cursor-hover
           >
